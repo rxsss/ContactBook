@@ -9,12 +9,12 @@ import Foundation
 
 class UserProfile {
     let name: String
-    let surname: String
+    let image: String
     let phoneNumber: String
     
-    init(name: String, surname: String, phoneNumber: String) {
+    init(name: String, image: String, phoneNumber: String) {
         self.name = name
-        self.surname = surname
+        self.image = image
         self.phoneNumber = phoneNumber
     }
 }
