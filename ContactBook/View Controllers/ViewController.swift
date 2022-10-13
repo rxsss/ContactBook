@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
-    var names: [UserProfile] = [
+    var contactsList: [UserProfile] = [
         UserProfile(name: "Rakhman", image: "rakhman_avatar", phoneNumber: "+77064294158"),
         UserProfile(name: "Rauan", image: "rauan_avatar", phoneNumber: "+77066473975")
     ]
@@ -21,12 +21,19 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toContactDetailPage" {
+        switch segue.identifier {
+        case "toContactDetailPage":
             let page = segue.destination as? ContactDetailViewController
             let index = tableView.indexPathForSelectedRow?.row
             if let index = index {
-                page?.contactInfo = names[index]
+                page?.contactInfo = contactsList[index]
+                page?.contactIndex = index
+                page?.delegate = self
             }
+        case "toAddNewContact":
+            let page = segue.destination as? AddNewContactViewController
+            page?.delegate = self
+        default: break
         }
     }
 }
@@ -34,14 +41,14 @@ class ViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
+        return contactsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as? CustomCell
-        cell?.nameLabel.text = names[indexPath.row].name
-        cell?.contactImageView.image = UIImage(named: names[indexPath.row].image)
-        cell?.numberLabel.text = names[indexPath.row].phoneNumber
+        cell?.nameLabel.text = contactsList[indexPath.row].name
+        cell?.contactImageView.image = UIImage(named: contactsList[indexPath.row].image)
+        cell?.numberLabel.text = contactsList[indexPath.row].phoneNumber
         return cell!
     }
 }
@@ -58,7 +65,7 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { _,_ in
-            self.names.remove(at: indexPath.row)
+            self.contactsList.remove(at: indexPath.row)
             tableView.reloadData()
         }
         let pinAction = UITableViewRowAction(style: .default, title: "Pin") { _,_ in
@@ -67,5 +74,20 @@ extension ViewController: UITableViewDelegate {
         pinAction.backgroundColor = .green
         
         return [deleteAction, pinAction]
+    }
+}
+
+extension ViewController: EditContactDelegate {
+    func editContact(contact: UserProfile?, contactIndex: Int) {
+        guard let contact = contact else { return }
+        contactsList[contactIndex] = contact
+        tableView.reloadData()
+    }
+}
+
+extension ViewController: AddNewContactDelegate {
+    func addNewContact(contact: UserProfile) {
+        contactsList.append(contact)
+        tableView.reloadData()
     }
 }

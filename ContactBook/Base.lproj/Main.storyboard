@@ -8,6 +8,67 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Add New Contact View Controller-->
+        <scene sceneID="W5m-8W-qtf">
+            <objects>
+                <viewController id="xbH-cW-2bz" customClass="AddNewContactViewController" customModule="ContactBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Sv-I0-CaS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tGO-zI-bep">
+                                <rect key="frame" x="16" y="405" width="382" height="140"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iin-17-ABr">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yhU-cs-eJY">
+                                        <rect key="frame" x="0.0" y="32" width="382" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtz-kt-md5">
+                                        <rect key="frame" x="0.0" y="74" width="382" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter number..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Meq-sB-lyT">
+                                        <rect key="frame" x="0.0" y="106" width="382" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" textContentType="tel"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="i3F-pm-dNQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tGO-zI-bep" firstAttribute="leading" secondItem="i3F-pm-dNQ" secondAttribute="leading" constant="16" id="A1V-4H-wJU"/>
+                            <constraint firstItem="tGO-zI-bep" firstAttribute="centerX" secondItem="i3F-pm-dNQ" secondAttribute="centerX" id="WWl-W2-tTK"/>
+                            <constraint firstItem="i3F-pm-dNQ" firstAttribute="trailing" secondItem="tGO-zI-bep" secondAttribute="trailing" constant="16" id="dlw-2D-bEl"/>
+                            <constraint firstItem="tGO-zI-bep" firstAttribute="centerY" secondItem="i3F-pm-dNQ" secondAttribute="centerY" id="h79-xF-ADy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="mVV-99-thm">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="8mg-5Y-JzV">
+                            <connections>
+                                <action selector="doneDidPressed:" destination="xbH-cW-2bz" id="o84-nU-VyI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="yhU-cs-eJY" id="Sd3-tx-Q4c"/>
+                        <outlet property="phoneNumberTextField" destination="Meq-sB-lyT" id="rjm-SL-hEP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SkJ-s3-B6r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="-538.39285714285711"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -82,7 +143,13 @@
                             <constraint firstItem="QqJ-om-U0Y" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tMq-tG-t3i"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="jI8-xE-CyL"/>
+                    <navigationItem key="navigationItem" id="jI8-xE-CyL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="FTX-8E-hmf">
+                            <connections>
+                                <segue destination="xbH-cW-2bz" kind="show" identifier="toAddNewContact" id="e8n-oj-Uqj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="QqJ-om-U0Y" id="0yY-gW-CrN"/>
                     </connections>
@@ -138,7 +205,7 @@
                     <navigationItem key="navigationItem" id="EpT-Ot-Emc">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="npK-Jh-Ylf">
                             <connections>
-                                <segue destination="QY4-v8-1AZ" kind="show" id="U6z-zi-t5f"/>
+                                <segue destination="QY4-v8-1AZ" kind="show" identifier="toEditContactsPage" id="U6z-zi-t5f"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -170,21 +237,78 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Contact View Controller-->
         <scene sceneID="Pqw-Xp-bWZ">
             <objects>
-                <viewController id="QY4-v8-1AZ" sceneMemberID="viewController">
+                <viewController id="QY4-v8-1AZ" customClass="EditContactViewController" customModule="ContactBook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gXh-DQ-hzt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lhF-0E-TKg">
+                                <rect key="frame" x="87" y="113" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="BTN-kj-eS9"/>
+                                    <constraint firstAttribute="width" constant="240" id="qP9-gx-7HW"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5t6-BG-z5J">
+                                <rect key="frame" x="20" y="378" width="374" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter number..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w1s-Nw-22T">
+                                <rect key="frame" x="16" y="492" width="382" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Teg-ZQ-2iX">
+                                <rect key="frame" x="20" y="460" width="374" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bmv-qb-8dJ">
+                                <rect key="frame" x="16" y="410" width="382" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="VvD-0H-CfU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="VvD-0H-CfU" firstAttribute="trailing" secondItem="bmv-qb-8dJ" secondAttribute="trailing" constant="16" id="2zG-XN-fnp"/>
+                            <constraint firstItem="5t6-BG-z5J" firstAttribute="leading" secondItem="VvD-0H-CfU" secondAttribute="leading" constant="20" id="7wP-Cl-LwF"/>
+                            <constraint firstItem="5t6-BG-z5J" firstAttribute="top" secondItem="lhF-0E-TKg" secondAttribute="bottom" constant="25" id="8pN-6a-DjN"/>
+                            <constraint firstItem="bmv-qb-8dJ" firstAttribute="top" secondItem="5t6-BG-z5J" secondAttribute="bottom" constant="8" id="CrW-d4-DBA"/>
+                            <constraint firstItem="VvD-0H-CfU" firstAttribute="trailing" secondItem="Teg-ZQ-2iX" secondAttribute="trailing" constant="20" id="Crq-eP-pnp"/>
+                            <constraint firstItem="w1s-Nw-22T" firstAttribute="top" secondItem="Teg-ZQ-2iX" secondAttribute="bottom" constant="8" id="DiD-Yk-pYV"/>
+                            <constraint firstItem="w1s-Nw-22T" firstAttribute="leading" secondItem="VvD-0H-CfU" secondAttribute="leading" constant="16" id="Qai-UX-5Op"/>
+                            <constraint firstItem="lhF-0E-TKg" firstAttribute="centerX" secondItem="VvD-0H-CfU" secondAttribute="centerX" id="UWc-Py-0xe"/>
+                            <constraint firstItem="Teg-ZQ-2iX" firstAttribute="leading" secondItem="VvD-0H-CfU" secondAttribute="leading" constant="20" id="hPs-l6-lsu"/>
+                            <constraint firstItem="VvD-0H-CfU" firstAttribute="trailing" secondItem="5t6-BG-z5J" secondAttribute="trailing" constant="20" id="myf-4a-eP7"/>
+                            <constraint firstItem="VvD-0H-CfU" firstAttribute="trailing" secondItem="w1s-Nw-22T" secondAttribute="trailing" constant="16" id="tB0-JZ-iEm"/>
+                            <constraint firstItem="lhF-0E-TKg" firstAttribute="top" secondItem="VvD-0H-CfU" secondAttribute="top" constant="25" id="tfJ-k4-M9p"/>
+                            <constraint firstItem="Teg-ZQ-2iX" firstAttribute="top" secondItem="bmv-qb-8dJ" secondAttribute="bottom" constant="16" id="v9Z-vv-yWX"/>
+                            <constraint firstItem="bmv-qb-8dJ" firstAttribute="leading" secondItem="VvD-0H-CfU" secondAttribute="leading" constant="16" id="wYR-bF-KsY"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="WLd-9W-vct"/>
+                    <navigationItem key="navigationItem" id="WLd-9W-vct">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="312-Vv-ixj">
+                            <connections>
+                                <action selector="doneDidPressed:" destination="QY4-v8-1AZ" id="LTO-5D-jEY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameField" destination="bmv-qb-8dJ" id="xaE-bY-RON"/>
+                        <outlet property="phoneField" destination="w1s-Nw-22T" id="M2B-jR-mvE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQF-RU-90s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2764" y="138"/>
+            <point key="canvasLocation" x="2762.3188405797105" y="137.94642857142856"/>
         </scene>
     </scenes>
     <resources>
